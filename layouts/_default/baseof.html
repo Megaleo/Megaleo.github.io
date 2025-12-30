@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ .Title }}</title>
+    {{ $style := resources.Get "css/style.css" | minify | fingerprint }}
+    <link rel="stylesheet" href="{{ $style.RelPermalink }}" integrity="{{ $style.Data.Integrity }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <!-- Latex support -->
+    {{ $noop := .WordCount }}
+    {{ if .Page.Store.Get "hasMath" }}
+        <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/katex@0.16.25/dist/katex.min.css"
+        integrity="sha384-WcoG4HRXMzYzfCgiyfrySxx90XSl2rxY5mnVY5TwtWE6KLrArNKn0T/mOgNL0Mmi"
+        crossorigin="anonymous"
+        >
+    {{ end }}
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="nav-content">
+            <div class="logo-group" style="display: flex; align-items: center; gap: 1rem;">
+                <a href="{{ site.Home.RelPermalink }}" class="logo">llessa.me</a>
+                
+                <!-- Language Switcher (iOS style toggle) -->
+                <div class="lang-switch-container">
+                    {{ if .IsTranslated }}
+                        {{ range .Translations }}
+                            <a href="{{ .RelPermalink }}" class="lang-toggle" aria-label="Switch Language">{{ .Language.Lang }}</a>
+                        {{ end }}
+                    {{ else }}
+                        <!-- If no translation exists, maybe show disabled or current? 
+                             User asked for EN|PT toggle. I'll implement a static visual toggle that switches state. -->
+                         {{ $currentLang := .Language.Lang }}
+                         {{ if eq $currentLang "en" }}
+                            <span class="lang-toggle active">EN</span>
+                            <span class="lang-separator">|</span>
+                            {{ if .IsTranslated }}
+                                {{ range .Translations }}
+                                <a href="{{ .RelPermalink }}" class="lang-toggle">PT</a>
+                                {{ end }}
+                            {{ else }}
+                                <!-- Fallback if page not translated, try to guess URL or linking to home? 
+                                     User asked to switch to corresponding page. If it doesn't exist, Hugo .Translations is empty.
+                                     I will assume main pages exist. Constructing the logic to show both EN | PT always is cleaner UI.
+                                -->
+                                <a href="/pt-br{{ .RelPermalink }}" class="lang-toggle">PT</a> 
+                            {{ end }}
+                         {{ else }}
+                            <a href="{{ .RelPermalink | replaceRE "^/pt-br" "" }}" class="lang-toggle">EN</a> 
+                            <span class="lang-separator">|</span>
+                            <span class="lang-toggle active">PT</span>
+                         {{ end }}
+                    {{ end }}
+                </div>
+            </div>
+
+            <button id="menu-toggle" class="menu-toggle" aria-label="Toggle navigation">&#9776;</button>
+
+            <div class="nav-menu">
+                <a href="{{ site.Home.RelPermalink }}" class="nav-link">{{ i18n "nav_home" }}</a>
+                <!-- <a href="{{ "research" | relLangURL }}" class="nav-link">{{ i18n "nav_research" }}</a> -->
+                <a href="{{ "publications" | relLangURL }}" class="nav-link">{{ i18n "nav_publications" }}</a>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        {{ block "main" . }}{{ end }}
+    </main>
+
+    <footer class="container">
+        <hr>
+        <p><small>
+            &copy; 2025 Leonardo Almeida Lessa
+            <br>
+            {{ i18n "footer_text" }} <a href="https://gohugo.io/">Hugo</a>
+        </small></p>
+    </footer>
+
+    <script>
+        document.getElementById('menu-toggle').addEventListener('click', function () {
+            document.querySelector('.nav-menu').classList.toggle('active');
+        });
+    </script>
+</body>
+
+</html>

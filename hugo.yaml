@@ -1,0 +1,30 @@
+baseURL: https://www.llessa.me/
+defaultContentLanguage: en
+languages:
+  en:
+    languageName: English
+    title: Leonardo A. Lessa
+    weight: 1
+    contentDir: content
+  pt-br:
+    languageName: Português
+    title: Leonardo A. Lessa
+    weight: 2
+    contentDir: content
+# Latex support
+markup:
+  goldmark:
+    extensions:
+      passthrough:
+        delimiters:
+          block:
+          - - '\['
+            - '\]'
+          - - $$
+            - $$
+          inline:
+          - - '\('
+            - '\)'
+          - - '$'
+            - '$'
+        enable: true

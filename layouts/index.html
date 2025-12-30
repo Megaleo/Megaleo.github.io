@@ -1,0 +1,95 @@
+{{ define "main" }}
+<div class="container home-container">
+
+  <section class="profile-section">
+    <div class="profile-card">
+      <img src="https://scholar.googleusercontent.com/citations?view_op=medium_photo&user=1jxgRYcAAAAJ&citpid=3"
+        alt="Leonardo A. Lessa" class="profile-photo">
+
+      <div class="profile-info">
+        {{ $cv := .Site.Data.cv.cv }}
+        <h1 class="my-name">{{ $cv.name }}</h1>
+        <p class="affiliation"> {{ i18n "affiliation" | safeHTML }} </p>
+
+        <div class="social-links">
+          {{ if $cv.email }}
+            <a href="mailto:{{ $cv.email }}" target="_blank" rel="noopener" aria-label="Email">
+              <i class="fas fa-envelope"></i>
+            </a>
+          {{ end }}
+          {{ range $cv.social_networks }}
+            {{ $networkName := .network }}
+            {{ $username := .username }}
+            {{ $url := "" }}
+            {{ $icon := "" }}
+
+            {{ if eq $networkName "ORCID" }}
+              {{ $url = printf "https://orcid.org/%s" $username }}
+              {{ $icon = "fa-brands fa-orcid" }}
+            {{ else if eq $networkName "Google Scholar" }}
+              {{ $url = printf "https://scholar.google.com/citations?user=%s" $username }}
+              {{ $icon = "fa-brands fa-google-scholar" }} <!-- Note: standard FA might not have google-scholar, generic google or graduation-cap often used if missing -->
+              {{ $icon = "fas fa-graduation-cap" }} 
+            {{ end }}
+
+            {{ if $url }}
+            <a href="{{ $url }}" target="_blank" rel="noopener" aria-label="{{ $networkName }}">
+              <i class="{{ $icon }}"></i>
+            </a>
+            {{ end }}
+          {{ end }}
+        </div>
+      </div>
+    </div>
+
+    <div class="bio-text">
+      <h2>{{ i18n "about_me" }}</h2>
+      <div class="bio-content">
+        {{ .Content }}
+      </div>
+    </div>
+  </section>
+
+  <section class="featured-research">
+    <h2>{{ i18n "latest_research" }}</h2>
+
+    {{ $pubs := .Site.Data.cv.cv.sections.publications }}
+    {{ if $pubs }}
+      <div id="publications-list">
+      {{ range $index, $pub := $pubs }}
+        <!-- Show first 3 (index 0, 1, 2), hide others -->
+        <div class="spotlight-paper {{ if ge $index 3 }}hidden-paper{{ end }}" style="margin-bottom: 1.5rem;">
+          {{ partial "paper-card.html" $pub }}
+        </div>
+      {{ end }}
+      </div>
+
+      {{ if gt (len $pubs) 3 }}
+      <div class="load-more-container">
+        <button id="load-more-btn" class="load-more-btn" aria-label="Load more publications">
+          <i class="fas fa-chevron-down"></i>
+        </button>
+      </div>
+      {{ end }}
+
+      <script>
+        document.getElementById('load-more-btn')?.addEventListener('click', function() {
+          const hidden = document.querySelectorAll('.hidden-paper');
+          const batchSize = 3;
+          
+          for(let i=0; i<batchSize && i<hidden.length; i++) {
+            hidden[i].classList.remove('hidden-paper');
+            hidden[i].classList.add('fade-in'); // Add animation
+          }
+          
+          // Re-check count after revealing
+          if(document.querySelectorAll('.hidden-paper').length === 0) {
+            this.style.display = 'none';
+          }
+        });
+      </script>
+    {{ end }}
+  </section>
+
+</div>
+{{ end }}

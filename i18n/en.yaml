@@ -1,0 +1,22 @@
+about_me:
+  other: About Me
+latest_research:
+  other: Latest Publications
+nav_home:
+  other: Home
+nav_research:
+  other: Research
+nav_cv:
+  other: CV
+nav_publications:
+  other: Publications
+footer_text:
+  other: Generated with
+affiliation:
+  other: <a href="https://perimeterinstitute.ca/">Perimeter Institute</a> <br> <a href="https://uwaterloo.ca/">University of Waterloo</a>
+bio_default:
+  other: PhD student in theoretical physics working on the interface between quantum information and quantum matter.
+list_of_publications:
+  other: List of Publications
+equal_contribution:
+  other: These authors contributed equally to this work.

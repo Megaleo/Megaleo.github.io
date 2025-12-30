@@ -1,0 +1,383 @@
+:root {
+  /* --- The Fixed Palette --- */
+  --bg-body: #f6f6f6;
+  /* Not harsh white */
+  --bg-card: #ffffff;
+  --text-main: #2d3748;
+  /* Soft charcoal */
+  --text-light: #718096;
+  /* Muted grey for dates/meta */
+  --accent: #2b6cb0;
+  /* Academic Blue - Links/Highlights */
+  --accent-hover: #2c5282;
+  --border-subtle: #e2e8f0;
+
+  /* Typography */
+  --font-heading: 'Inter', -apple-system, sans-serif;
+  --font-body: 'Merriweather', serif;
+  /* A nice serif makes reading bios pleasant */
+  --font-mono: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
+}
+
+.logo {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 1.1rem;
+  letter-spacing: -0.5px;
+  color: var(--text-main);
+  text-decoration: none;
+  /* Remove underline */
+  transition: color 0.2s ease;
+}
+
+.logo:hover {
+  color: var(--accent);
+}
+
+.lang-switch-container {
+  display: flex;
+  align-items: center;
+  font-family: var(--font-mono); /* Match logo font */
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #a0aec0; /* Inactive color */
+  gap: 4px;
+}
+
+.lang-toggle {
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.lang-toggle:hover {
+  color: var(--text-main);
+}
+
+.lang-toggle.active {
+  color: var(--text-main); /* Active color (black/dark) */
+  font-weight: 700;
+}
+
+.lang-separator {
+  color: #cbd5e0; /* Light divider */
+  font-weight: 400;
+}
+
+body {
+  background-color: var(--bg-body);
+  color: var(--text-main);
+  font-family: var(--font-body);
+  line-height: 1.6;
+  margin: 0;
+}
+
+h1,
+h2,
+h3,
+.affiliation,
+.nav-link {
+  font-family: var(--font-heading);
+  font-weight: 600;
+}
+
+/* --- Layout --- */
+.container {
+  max-width: 900px;
+  margin: 2rem auto;
+  padding: 0 1.5rem;
+}
+
+.home-container {
+  display: grid;
+  gap: 2rem;
+}
+
+/* --- Profile Section (Split Layout) --- */
+.profile-section {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  /* Photo left, Bio right */
+  gap: 3rem;
+  align-items: start;
+}
+
+.profile-card {
+  text-align: center;
+  /* Center photo and name */
+}
+
+.profile-photo {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  /* Circle */
+  object-fit: cover;
+  border: 4px solid var(--bg-card);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  /* margin-bottom: 1rem; */
+}
+
+.my-name {
+  font-size: 1.5rem;
+  margin: 0.5rem 0;
+  color: #1a202c;
+}
+
+.affiliation {
+  font-size: 0.95rem;
+  color: var(--text-light);
+  margin: 0;
+}
+
+.affiliation a {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.affiliation a:hover {
+  color: var(--text-main); /* Darker than text-light */
+}
+
+.social-links {
+  margin-top: 0.5rem;
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+.social-links a {
+  font-size: 1.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 700;
+}
+
+/* --- Bio --- */
+.bio-text h2 {
+  margin-top: 0;
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #718096;
+  /* Matches --text-light */
+}
+
+/* --- Featured Research (The "Card" Look) --- */
+.featured-research {
+  border-top: 1px solid var(--border-subtle);
+  padding-top: 1rem;
+}
+
+.featured-paper-card {
+  background: var(--bg-card);
+  padding: 2rem;
+  border-radius: 8px;
+  border: 1px solid var(--border-subtle);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+  transition: transform 0.2s ease;
+}
+
+.featured-paper-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.05);
+}
+
+/* --- Navigation Links --- */
+.nav-menu {
+  display: flex;
+  gap: 10px;
+  /* Reduced gap since padding adds width */
+}
+
+.nav-link {
+  text-decoration: none;
+  color: var(--text-main);
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  transition: background-color 0.2s ease, color 0.2s ease;
+  font-weight: 500;
+  /* Slightly lighter than the 600 global preference */
+}
+
+.nav-link:hover {
+  background-color: var(--bg-body);
+  /* Subtle grey background */
+  color: var(--accent);
+}
+
+/* --- Responsive Navigation (Sandwich Menu) --- */
+.navbar {
+  background: var(--bg-card);
+  width: 100%;
+}
+
+.nav-content {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 1.0rem 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+/* --- Spotlight Styling for "Latest Research" --- */
+.spotlight-paper {
+  background: white;
+  border-left: 4px solid var(--accent); /* Accent line on the left */
+  border-radius: 4px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.05); /* Subtle lift */
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  position: relative;
+  overflow: hidden; /* For pseudo-element effects if needed */
+}
+
+.spotlight-paper:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 15px rgba(0,0,0,0.1);
+}
+
+/* Add a subtle "NEW" or highlight badge-like feel via background gradient */
+.spotlight-paper::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100px;
+  height: 100px;
+  background: linear-gradient(135deg, transparent 50%, rgba(43, 108, 176, 0.05) 50%); /* Very subtle accent corner */
+  pointer-events: none;
+}
+
+/* Load More Logic */
+.hidden-paper {
+  display: none;
+}
+
+.fade-in {
+  animation: fadeIn 0.5s ease-in-out forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.load-more-container {
+  text-align: center;
+  margin-top: 0rem;
+}
+
+.load-more-btn {
+  background: none;
+  border: none;
+  color: var(--accent);
+  font-size: 2rem;
+  cursor: pointer;
+  transition: transform 0.2s ease, color 0.2s ease;
+  padding: 0rem;
+}
+
+.load-more-btn:hover {
+  transform: translateY(3px);
+  color: var(--accent-hover);
+}
+
+.menu-toggle {
+  display: none;
+  font-size: 1.5rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--text-main);
+  padding: 0;
+  line-height: 1;
+  transition: color 0.2s ease;
+}
+
+.menu-toggle:hover {
+  color: var(--accent);
+}
+
+.menu-toggle:active {
+  transform: none;
+}
+
+.nav-menu {
+  display: flex;
+  gap: 20px;
+}
+
+/* Mobile Changes */
+@media (max-width: 768px) {
+  .profile-section {
+    grid-template-columns: 1fr;
+    /* Stack vertically */
+    text-align: center;
+  }
+
+  .profile-card {
+    margin-bottom: 0rem;
+  }
+
+  /* Sandwich Menu Logic */
+  .nav-menu {
+    display: flex;
+    /* Always display flex to allow animation, but hide via height/capacity */
+    flex-direction: column;
+    width: 100%;
+    text-align: center;
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out, opacity 0.3s ease-out, padding 0.3s ease;
+    padding-top: 0;
+    /* Animate padding too */
+    gap: 0;
+    /* Remove flex gap so items bunch up tightly */
+  }
+
+  /* JS Toggled Class */
+  .nav-menu.active {
+    max-height: 300px;
+    /* Arbitrary large enough height */
+    opacity: 1;
+    padding-top: 1rem;
+    padding-bottom: 0;
+  }
+
+  .nav-link {
+    display: block;
+    width: 100%;
+    text-align: center;
+    padding: 0.5rem 0;
+    /* Reduced from 1rem to bring items closer */
+    height: auto;
+    /* Reset fixed height from desktop */
+    border-radius: 0;
+  }
+
+  .nav-link:hover {
+    background-color: var(--bg-body);
+  }
+
+  .menu-toggle {
+    display: block;
+  }
+}
+
+@media (min-width: 769px) {
+  .menu-toggle {
+    display: none !important;
+  }
+
+  .nav-menu {
+    display: flex !important;
+  }
+}

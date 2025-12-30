@@ -1,0 +1,40 @@
+<div class="paper-item">
+    
+    <div class="paper-title" style="font-weight: bold; font-size: 1.15rem; color: #004f90;">
+        {{ $link := "" }}
+        {{ if .doi }}
+            {{ $link = printf "https://doi.org/%s" .doi }}
+        {{ else if .url }}
+            {{ $link = .url }}
+        {{ end }}
+
+        {{ if ne $link "" }}
+            <a href="{{ $link }}" target="_blank" style="text-decoration: none; color: inherit;">
+                {{ .title }}
+            </a>
+        {{ else }}
+            {{ .title }}
+        {{ end }}
+    </div>
+
+    <div class="paper-authors" style="margin-top: 0.2rem;">
+        {{ delimit .authors ", " | markdownify }}
+    </div>
+
+    <div class="paper-meta" style="color: #666; font-size: 0.95rem; margin-top: 0.2rem; font-style: italic;">
+        {{ if and .journal (not (hasPrefix .journal "Submitted to")) }}
+            {{ .journal | markdownify }} &middot; 
+        {{ end }}
+        
+        {{ if .date }}
+            {{ $dateStr := .date }}
+            {{ if eq (len $dateStr) 7 }}
+                {{ $dateStr = printf "%s-01" $dateStr }}
+            {{ end }}
+            
+            {{ $dateObj := time $dateStr }}
+            {{ $dateObj.Format "January 2006" }}
+        {{ end }}
+    </div>
+
+</div>

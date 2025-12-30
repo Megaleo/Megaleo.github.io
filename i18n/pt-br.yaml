@@ -1,0 +1,22 @@
+about_me:
+  other: Sobre mim
+latest_research:
+  other: Publicações Recentes
+nav_home:
+  other: Início
+nav_research:
+  other: Pesquisa
+nav_cv:
+  other: CV
+nav_publications:
+  other: Publicações
+footer_text:
+  other: Gerado com
+affiliation:
+  other: <a href="https://perimeterinstitute.ca/">Perimeter Institute</a> <br> <a href="https://uwaterloo.ca/">Universidade de Waterloo</a>
+bio_default:
+  other: Doutorando em física teórica trabalhando na interface entre informação quântica e matéria quântica.
+list_of_publications:
+  other: Lista de Publicações
+equal_contribution:
+  other: Estes autores contribuíram igualmente para este trabalho.

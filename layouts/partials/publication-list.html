@@ -1,0 +1,9 @@
+<div class="publication-list">
+    {{ $data := .Site.Data.cv.cv.sections }}
+
+    {{ range $data.publications }}
+        <div style="margin-bottom: 2rem;">
+            {{ partial "paper-card.html" . }}
+        </div>
+    {{ end }}
+</div>

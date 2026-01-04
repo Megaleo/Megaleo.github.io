@@ -1,267 +1,83 @@
+/* --- Variables & Theme --- */
 :root {
-  /* --- The Fixed Palette --- */
-  --bg-body: #f6f6f6;
-  /* Not harsh white */
-  --bg-card: #ffffff;
-  --text-main: #2d3748;
-  /* Soft charcoal */
-  --text-light: #718096;
-  /* Muted grey for dates/meta */
-  --accent: #2b6cb0;
-  /* Academic Blue - Links/Highlights */
-  --accent-hover: #2c5282;
+  /* Palette */
+  --color-bg: #fafafa;         /* Very light grey/white, softer than pure white */
+  --color-surface: #ffffff;    /* Pure white for cards */
+  
+  --color-text-main: #1a202c;  /* Deep charcoal */
+  --color-text-muted: #718096; /* Slate grey */
+  --color-text-light: #a0aec0; /* Lighter grey for meta */
+
+  --color-primary: #2563eb;    /* Royal Blue - Trustworthy & Academic */
+  --color-primary-dark: #1e40af;
+  --color-accent: #3b82f6;     /* Brighter blue for highlights */
+
   --border-subtle: #e2e8f0;
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-full: 9999px;
 
-  /* Typography */
-  --font-heading: 'Inter', -apple-system, sans-serif;
-  --font-body: 'Merriweather', serif;
-  /* A nice serif makes reading bios pleasant */
-  --font-mono: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
+  /* Fonts */
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-serif: 'Merriweather', Georgia, serif;
 }
 
-.logo {
-  font-family: var(--font-mono);
-  font-weight: 700;
-  font-size: 1.1rem;
-  letter-spacing: -0.5px;
-  color: var(--text-main);
-  text-decoration: none;
-  /* Remove underline */
-  transition: color 0.2s ease;
-}
-
-.logo:hover {
-  color: var(--accent);
-}
-
-.lang-switch-container {
-  display: flex;
-  align-items: center;
-  font-family: var(--font-mono); /* Match logo font */
-  font-size: 0.9rem;
-  font-weight: 600;
-  color: #a0aec0; /* Inactive color */
-  gap: 4px;
-}
-
-.lang-toggle {
-  text-decoration: none;
-  color: inherit;
-  cursor: pointer;
-  transition: color 0.2s ease;
-}
-
-.lang-toggle:hover {
-  color: var(--text-main);
-}
-
-.lang-toggle.active {
-  color: var(--text-main); /* Active color (black/dark) */
-  font-weight: 700;
-}
-
-.lang-separator {
-  color: #cbd5e0; /* Light divider */
-  font-weight: 400;
+/* --- Global Reset & Base --- */
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
 }
 
 body {
-  background-color: var(--bg-body);
-  color: var(--text-main);
-  font-family: var(--font-body);
-  line-height: 1.6;
+  background-color: var(--color-bg);
+  color: var(--color-text-main);
+  font-family: var(--font-serif); /* Default to serif for reading experience (Bio) */
+  line-height: 1.7;
   margin: 0;
+  -webkit-font-smoothing: antialiased;
+  background-image: 
+    radial-gradient(at 0% 0%, rgba(59, 130, 246, 0.03) 0px, transparent 50%),
+    radial-gradient(at 100% 0%, rgba(37, 99, 235, 0.03) 0px, transparent 50%);
+  background-attachment: fixed;
 }
 
-h1,
-h2,
-h3,
-.affiliation,
-.nav-link {
-  font-family: var(--font-heading);
-  font-weight: 600;
+h1, h2, h3, h4, h5, h6,
+.nav-link, .logo, .btn, button, .meta, .tag, .profile-info {
+  font-family: var(--font-sans);
+}
+
+h1, h2, h3 {
+  color: var(--color-text-main);
+  margin-top: 0;
+  line-height: 1.2;
+}
+
+a {
+  color: var(--color-primary);
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+a:hover {
+  color: var(--color-primary-dark);
 }
 
 /* --- Layout --- */
 .container {
   max-width: 900px;
-  margin: 2rem auto;
+  margin: 0 auto;
   padding: 0 1.5rem;
 }
 
-.home-container {
-  display: grid;
-  gap: 2rem;
-}
-
-/* --- Profile Section (Split Layout) --- */
-.profile-section {
-  display: grid;
-  grid-template-columns: 1fr 2fr;
-  /* Photo left, Bio right */
-  gap: 3rem;
-  align-items: start;
-}
-
-.profile-card {
-  text-align: center;
-  /* Center photo and name */
-}
-
-.profile-photo {
-  width: 200px;
-  height: 200px;
-  border-radius: 50%;
-  /* Circle */
-  object-fit: cover;
-  border: 4px solid var(--bg-card);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  /* margin-bottom: 1rem; */
-}
-
-.my-name {
-  font-size: 1.5rem;
-  margin: 0.5rem 0;
-  color: #1a202c;
-}
-
-.affiliation {
-  font-size: 0.95rem;
-  color: var(--text-light);
-  margin: 0;
-}
-
-.affiliation a {
-  color: inherit;
-  text-decoration: none;
-  transition: color 0.2s ease;
-}
-
-.affiliation a:hover {
-  color: var(--text-main); /* Darker than text-light */
-}
-
-.social-links {
-  margin-top: 0.5rem;
-  display: flex;
-  justify-content: center;
-  gap: 15px;
-}
-
-.social-links a {
-  font-size: 1.5rem;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  color: var(--accent);
-  text-decoration: none;
-  font-weight: 700;
-}
-
-/* --- Bio --- */
-.bio-text h2 {
-  margin-top: 0;
-  font-size: 1.2rem;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: #718096;
-  /* Matches --text-light */
-}
-
-/* --- Featured Research (The "Card" Look) --- */
-.featured-research {
-  border-top: 1px solid var(--border-subtle);
-  padding-top: 1rem;
-}
-
-.featured-paper-card {
-  background: var(--bg-card);
-  padding: 2rem;
-  border-radius: 8px;
-  border: 1px solid var(--border-subtle);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
-  transition: transform 0.2s ease;
-}
-
-.featured-paper-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.05);
-}
-
-/* --- Navigation Links --- */
-.nav-menu {
-  display: flex;
-  gap: 10px;
-  /* Reduced gap since padding adds width */
-}
-
-.nav-link {
-  text-decoration: none;
-  color: var(--text-main);
-  padding: 0.5rem 1rem;
-  border-radius: 6px;
-  transition: background-color 0.2s ease, color 0.2s ease;
-  font-weight: 500;
-  /* Slightly lighter than the 600 global preference */
-}
-
-.nav-link:hover {
-  background-color: var(--bg-body);
-  /* Subtle grey background */
-  color: var(--accent);
-}
-
-/* --- Responsive Navigation (Sandwich Menu) --- */
-.navbar {
-  background: var(--bg-card);
-  width: 100%;
-}
-
-.nav-content {
-  max-width: 900px;
-  margin: 0 auto;
-  padding: 1.0rem 1.5rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-}
-
-/* --- Spotlight Styling for "Latest Research" --- */
-.spotlight-paper {
-  background: white;
-  border-left: 4px solid var(--accent); /* Accent line on the left */
-  border-radius: 4px;
-  padding: 1.5rem;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.05); /* Subtle lift */
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-  position: relative;
-  overflow: hidden; /* For pseudo-element effects if needed */
-}
-
-.spotlight-paper:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 10px 15px rgba(0,0,0,0.1);
-}
-
-/* Add a subtle "NEW" or highlight badge-like feel via background gradient */
-.spotlight-paper::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 100px;
-  height: 100px;
-  background: linear-gradient(135deg, transparent 50%, rgba(43, 108, 176, 0.05) 50%); /* Very subtle accent corner */
-  pointer-events: none;
-}
-
-/* Load More Logic */
-.hidden-paper {
-  display: none;
-}
-
-.fade-in {
-  animation: fadeIn 0.5s ease-in-out forwards;
+main {
+  padding-top: 2rem;
+  padding-bottom: 4rem;
+  animation: fadeIn 0.6s ease-out;
 }
 
 @keyframes fadeIn {
@@ -269,115 +85,391 @@ h3,
   to { opacity: 1; transform: translateY(0); }
 }
 
-.load-more-container {
-  text-align: center;
-  margin-top: 0rem;
+/* --- Navbar --- */
+.navbar {
+  background: rgba(255, 255, 255, 0.85); /* Glass effect */
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(226, 232, 240, 0.6);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
 }
 
-.load-more-btn {
-  background: none;
-  border: none;
-  color: var(--accent);
-  font-size: 2rem;
-  cursor: pointer;
-  transition: transform 0.2s ease, color 0.2s ease;
-  padding: 0rem;
+.nav-content {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0.5rem 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-.load-more-btn:hover {
-  transform: translateY(3px);
-  color: var(--accent-hover);
+.logo {
+  font-weight: 700;
+  font-size: 1.25rem;
+  letter-spacing: -0.02em;
+  color: var(--color-text-main);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.logo:hover {
+  color: var(--color-primary);
+}
+
+/* Language Switcher */
+.lang-switch-container {
+  display: flex;
+  align-items: center;
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--color-text-light);
+  background: var(--color-bg);
+  padding: 4px 8px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-subtle);
+  margin-left: 1rem;
+}
+
+.lang-toggle {
+  color: var(--color-text-muted);
+  padding: 0 4px;
+}
+
+.lang-toggle:hover {
+  color: var(--color-primary);
+}
+
+.lang-toggle.active {
+  color: var(--color-text-main);
+}
+
+.lang-separator {
+  color: var(--border-subtle);
+  margin: 0 2px;
+}
+
+/* Desktop Nav */
+.nav-menu {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+.nav-link {
+  font-weight: 500;
+  color: var(--color-text-muted);
+  font-size: 0.95rem;
+}
+
+.nav-link:hover {
+  color: var(--color-primary);
 }
 
 .menu-toggle {
-  display: none;
-  font-size: 1.5rem;
+  display: none; /* Hidden on desktop */
   background: none;
   border: none;
+  font-size: 1.5rem;
+  color: var(--color-text-main);
   cursor: pointer;
-  color: var(--text-main);
-  padding: 0;
-  line-height: 1;
-  transition: color 0.2s ease;
 }
 
-.menu-toggle:hover {
-  color: var(--accent);
+/* --- Profile Section --- */
+.profile-section {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 4rem; /* More breathing room */
+  margin-top: 3rem;
+  margin-bottom: 4rem;
+  align-items: start;
 }
 
-.menu-toggle:active {
-  transform: none;
+.profile-card {
+  text-align: center;
 }
 
-.nav-menu {
+.profile-photo {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  object-fit: cover;
+  /* Premium shadow instead of border */
+  box-shadow: var(--shadow-lg); 
+  border: 4px solid var(--color-surface);
+  transition: transform 0.3s ease;
+}
+
+.profile-photo:hover {
+  transform: scale(1.02);
+}
+
+.my-name {
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin: 1.5rem 0 0.5rem 0;
+  letter-spacing: -0.02em;
+}
+
+.affiliation {
+  font-size: 0.95rem;
+  color: var(--color-text-muted);
+  font-weight: 400;
+  margin-bottom: 1.5rem;
+  line-height: 1.5;
+}
+
+.affiliation a {
+  color: var(--color-text-muted);
+  border-bottom: 1px dotted var(--color-text-muted);
+}
+
+.affiliation a:hover {
+  color: var(--color-primary);
+  border-bottom-color: var(--color-primary);
+}
+
+/* Social Icons */
+.social-links {
   display: flex;
-  gap: 20px;
+  justify-content: center;
+  gap: 1.25rem;
+  margin-top: 1rem;
 }
 
-/* Mobile Changes */
+.social-links a {
+  font-size: 1.25rem;
+  color: var(--color-text-muted);
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--color-surface);
+  border: 1px solid var(--border-subtle);
+}
+
+.social-links a:hover {
+  color: var(--color-primary);
+  border-color: var(--color-primary);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-sm);
+}
+
+/* Bio Text */
+.bio-text h2 {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-text-light);
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.bio-content {
+  font-size: 1.1rem;
+  color: var(--color-text-main);
+  font-weight: 300;
+}
+
+.bio-content p {
+  margin-bottom: 1.5rem;
+}
+
+/* --- Research Section --- */
+.featured-research h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+  letter-spacing: -0.02em;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.spotlight-paper {
+  background: var(--color-surface);
+  border-radius: var(--radius-md);
+  padding: 1.5rem;
+  position: relative;
+  border: 1px solid var(--border-subtle);
+  transition: all 0.3s ease;
+  margin-bottom: 1rem;
+}
+
+/* Card Hover Effect */
+.spotlight-paper:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+  border-color: rgba(59, 130, 246, 0.3);
+}
+
+/* Remove the old hard left border accent, replace with subtle indication if needed, 
+   but clean is better. Let's keep the "NEW" marker concept if desired but cleaner. 
+*/
+.spotlight-paper::before {
+  /* Subtle indicator strip on left, but rounded */
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 12px;
+  bottom: 12px;
+  width: 4px;
+  background: var(--color-primary);
+  border-radius: 0 4px 4px 0;
+  opacity: 0; 
+  transition: opacity 0.3s ease;
+}
+
+.spotlight-paper:hover::before {
+  opacity: 1;
+}
+
+/* Inner content of paper cards */
+.spotlight-paper h3 a {
+  font-family: var(--font-sans);
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--color-text-main);
+  text-decoration: none;
+}
+
+.spotlight-paper h3 a:hover {
+  color: var(--color-primary);
+}
+
+.spotlight-paper .authors {
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  color: var(--color-text-muted);
+  margin: 0.25rem 0;
+}
+
+.spotlight-paper .meta {
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  color: var(--color-text-light);
+  margin-bottom: 0;
+}
+
+/* Load More Button */
+.load-more-container {
+  text-align: center;
+  padding: 1rem 0;
+}
+
+.load-more-btn {
+  background: var(--color-surface);
+  border: 1px solid var(--border-subtle);
+  padding: 0.75rem 2rem;
+  border-radius: var(--radius-full);
+  color: var(--color-text-muted);
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: var(--shadow-sm);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.load-more-btn:hover {
+  color: var(--color-primary);
+  border-color: var(--color-primary);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}
+
+/* --- Mobile / Responsive --- */
 @media (max-width: 768px) {
   .profile-section {
     grid-template-columns: 1fr;
-    /* Stack vertically */
+    gap: 2rem;
     text-align: center;
+    margin-top: 2rem;
+  }
+  
+  .profile-photo {
+    width: 200px;
+    height: 200px;
+    margin: 0 auto;
   }
 
-  .profile-card {
-    margin-bottom: 0rem;
-  }
-
-  /* Sandwich Menu Logic */
-  .nav-menu {
-    display: flex;
-    /* Always display flex to allow animation, but hide via height/capacity */
-    flex-direction: column;
-    width: 100%;
-    text-align: center;
-    max-height: 0;
-    opacity: 0;
-    overflow: hidden;
-    transition: max-height 0.3s ease-out, opacity 0.3s ease-out, padding 0.3s ease;
-    padding-top: 0;
-    /* Animate padding too */
-    gap: 0;
-    /* Remove flex gap so items bunch up tightly */
-  }
-
-  /* JS Toggled Class */
-  .nav-menu.active {
-    max-height: 300px;
-    /* Arbitrary large enough height */
-    opacity: 1;
-    padding-top: 1rem;
-    padding-bottom: 0;
-  }
-
-  .nav-link {
-    display: block;
-    width: 100%;
-    text-align: center;
-    padding: 0.5rem 0;
-    /* Reduced from 1rem to bring items closer */
-    height: auto;
-    /* Reset fixed height from desktop */
-    border-radius: 0;
-  }
-
-  .nav-link:hover {
-    background-color: var(--bg-body);
-  }
-
+  /* Hamburger Menu state */
   .menu-toggle {
     display: block;
+  }
+
+  .nav-menu {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: var(--color-surface);
+    border-bottom: 1px solid var(--border-subtle);
+    padding: 1rem;
+    gap: 1rem;
+    box-shadow: var(--shadow-md);
+    
+    /* Hidden state */
+    transform-origin: top;
+    transform: scaleY(0);
+    opacity: 0;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+    pointer-events: none; 
+  }
+
+  .nav-menu.active {
+    transform: scaleY(1);
+    opacity: 1;
+    pointer-events: auto;
   }
 }
 
-@media (min-width: 769px) {
-  .menu-toggle {
-    display: none !important;
-  }
+/* --- Utilities --- */
+.hidden-paper {
+  display: none;
+}
 
-  .nav-menu {
-    display: flex !important;
-  }
+.fade-in {
+  animation: fadeInPaper 0.6s ease forwards;
+}
+
+@keyframes fadeInPaper {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+footer {
+  text-align: center;
+  color: var(--color-text-light);
+  font-size: 0.85rem;
+  font-family: var(--font-sans);
+  margin-top: 4rem;
+  padding-bottom: 2rem;
+}
+
+footer a {
+  color: var(--color-text-muted);
+}
+
+footer hr {
+  border: 0;
+  border-top: 1px solid var(--border-subtle);
+  margin-bottom: 2rem;
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
 }

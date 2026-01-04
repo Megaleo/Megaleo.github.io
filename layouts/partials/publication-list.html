@@ -3,7 +3,9 @@
 
     {{ range $data.publications }}
         <div style="margin-bottom: 2rem;">
-            {{ partial "paper-card.html" . }}
+            <div class="spotlight-paper">
+                {{ partial "paper-card.html" . }}
+            </div>
         </div>
     {{ end }}
 </div>

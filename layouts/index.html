@@ -3,7 +3,10 @@
 
   <section class="profile-section">
     <div class="profile-card">
-      <img src="https://scholar.googleusercontent.com/citations?view_op=medium_photo&user=1jxgRYcAAAAJ&citpid=3"
+      {{ $headshot := resources.Get "images/headshot.jpg" }}
+      {{ $headshot := $headshot.Crop "1000x1000 Top" }}
+      {{ $headshot := $headshot.Resize "500x" }}
+      <img src="{{ $headshot.RelPermalink }}"
         alt="Leonardo A. Lessa" class="profile-photo">
 
       <div class="profile-info">
@@ -30,6 +33,9 @@
               {{ $url = printf "https://scholar.google.com/citations?user=%s" $username }}
               {{ $icon = "fa-brands fa-google-scholar" }} <!-- Note: standard FA might not have google-scholar, generic google or graduation-cap often used if missing -->
               {{ $icon = "fas fa-graduation-cap" }} 
+            {{ else if eq $networkName "GitHub" }}
+              {{ $url = printf "https://github.com/%s" $username }}
+              {{ $icon = "fab fa-github" }}
             {{ end }}
 
             {{ if $url }}

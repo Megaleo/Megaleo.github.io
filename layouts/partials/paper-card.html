@@ -1,6 +1,4 @@
-<div class="paper-item">
-    
-    <div class="paper-title" style="font-weight: bold; font-size: 1.15rem; color: #004f90;">
+    <h3>
         {{ $link := "" }}
         {{ if .doi }}
             {{ $link = printf "https://doi.org/%s" .doi }}
@@ -9,19 +7,19 @@
         {{ end }}
 
         {{ if ne $link "" }}
-            <a href="{{ $link }}" target="_blank" style="text-decoration: none; color: inherit;">
+            <a href="{{ $link }}" target="_blank" rel="noopener">
                 {{ .title }}
             </a>
         {{ else }}
             {{ .title }}
         {{ end }}
-    </div>
+    </h3>
 
-    <div class="paper-authors" style="margin-top: 0.2rem;">
+    <div class="authors">
         {{ delimit .authors ", " | markdownify }}
     </div>
 
-    <div class="paper-meta" style="color: #666; font-size: 0.95rem; margin-top: 0.2rem; font-style: italic;">
+    <div class="meta">
         {{ if and .journal (not (hasPrefix .journal "Submitted to")) }}
             {{ .journal | markdownify }} &middot; 
         {{ end }}
@@ -33,8 +31,12 @@
             {{ end }}
             
             {{ $dateObj := time $dateStr }}
-            {{ $dateObj.Format "January 2006" }}
+            {{ if eq site.Language.Lang "pt-br" }}
+                {{ $months := slice "Janeiro" "Fevereiro" "Março" "Abril" "Maio" "Junho" "Julho" "Agosto" "Setembro" "Outubro" "Novembro" "Dezembro" }}
+                {{ $monthIndex := sub (int ($dateObj.Format "1")) 1 }}
+                {{ index $months $monthIndex }} de {{ $dateObj.Format "2006" }}
+            {{ else }}
+                {{ $dateObj.Format "January 2006" }}
+            {{ end }}
         {{ end }}
     </div>
-
-</div>

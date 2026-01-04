@@ -5,6 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ .Title }}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
     {{ $style := resources.Get "css/style.css" | minify | fingerprint }}
     <link rel="stylesheet" href="{{ $style.RelPermalink }}" integrity="{{ $style.Data.Integrity }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
@@ -63,8 +66,7 @@
 
             <div class="nav-menu">
                 <a href="{{ site.Home.RelPermalink }}" class="nav-link">{{ i18n "nav_home" }}</a>
-                <!-- <a href="{{ "research" | relLangURL }}" class="nav-link">{{ i18n "nav_research" }}</a> -->
-                <a href="{{ "publications" | relLangURL }}" class="nav-link">{{ i18n "nav_publications" }}</a>
+                <a href="{{ "research" | relLangURL }}" class="nav-link">{{ i18n "nav_research" }}</a>
             </div>
         </div>
     </nav>
@@ -76,7 +78,7 @@
     <footer class="container">
         <hr>
         <p><small>
-            &copy; 2025 Leonardo Almeida Lessa
+            &copy; 2026 Leonardo Almeida Lessa
             <br>
             {{ i18n "footer_text" }} <a href="https://gohugo.io/">Hugo</a>
         </small></p>

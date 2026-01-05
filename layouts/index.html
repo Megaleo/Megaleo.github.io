@@ -12,7 +12,7 @@
       <div class="profile-info">
         {{ $cv := .Site.Data.cv.cv }}
         <h1 class="my-name">{{ $cv.name }}</h1>
-        <p class="affiliation"> {{ i18n "affiliation" | safeHTML }} </p>
+        <!-- <p class="affiliation"> {{ i18n "affiliation" | safeHTML }} </p> -->
 
         <div class="social-links">
           {{ if $cv.email }}

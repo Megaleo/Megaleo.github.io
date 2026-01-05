@@ -419,8 +419,8 @@ main {
     right: 0;
     background: var(--color-surface);
     border-bottom: 1px solid var(--border-subtle);
-    padding: 1rem;
-    gap: 1rem;
+    padding: 0;
+    gap: 0;
     box-shadow: var(--shadow-md);
     
     /* Hidden state */
@@ -431,10 +431,69 @@ main {
     pointer-events: none; 
   }
 
+  /* Mobile Link Item Styling */
+  .nav-menu .nav-link {
+    display: block;
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid var(--border-subtle);
+    width: 100%;
+    box-sizing: border-box; /* Ensure padding is included in width */
+    text-align: center;
+  }
+
+  .nav-menu .nav-link:hover {
+    background-color: var(--color-bg); /* Use theme bg for subtle interaction */
+  }
+
+  .nav-menu .nav-link:last-child {
+    border-bottom: none;
+  }
+
   .nav-menu.active {
     transform: scaleY(1);
     opacity: 1;
     pointer-events: auto;
+  }
+}
+
+/* Desktop Navigation - Full Height Links */
+@media (min-width: 769px) {
+  .navbar {
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+
+  .nav-content {
+    padding-top: 0;
+    padding-bottom: 0;
+    /* Maintain original height: 1.25rem logo + 2rem total padding ~= 3.25rem - 3.5rem */
+    min-height: 3.5rem; 
+    align-items: stretch;
+  }
+
+  /* Override gap to allow contiguous hover areas */
+  .nav-menu {
+    gap: 0;
+    align-items: stretch;
+  }
+
+  .nav-link {
+    display: flex;
+    align-items: center;
+    padding: 0 1.25rem; /* Horizontal spacing */
+    transition: background-color 0.2s ease, color 0.2s ease;
+    height: auto; /* Stretches to fill container */
+  }
+
+  .nav-link:hover {
+    background-color: rgba(0, 0, 0, 0.04); /* Subtle highlight rectangle */
+    color: var(--color-primary);
+  }
+  
+  /* Ensure Logo Group vertically centers its content */
+  .logo-group {
+    display: flex;
+    align-items: center;
   }
 }
 

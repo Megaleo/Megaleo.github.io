@@ -1,3 +1,4 @@
+    <div class="paper-content-inner {{ if (resources.GetMatch (printf "images/paper_logos/%s.*" .title)) }}with-image{{ end }}">
     <h3>
         {{ $link := "" }}
         {{ if .doi }}
@@ -40,3 +41,12 @@
             {{ end }}
         {{ end }}
     </div>
+    </div>
+
+    {{ $image := resources.GetMatch (printf "images/paper_logos/%s.*" .title) }}
+    {{ if $image }}
+    {{ $resized := $image.Fill "500x500" }}
+    <div class="paper-logo-container">
+        <img src="{{ $resized.RelPermalink }}" alt="{{ .title }}" loading="lazy">
+    </div>
+    {{ end }}

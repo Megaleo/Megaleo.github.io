@@ -473,3 +473,69 @@ footer hr {
   margin-left: auto;
   margin-right: auto;
 }
+
+/* --- Paper Card Images --- */
+.spotlight-paper {
+  position: relative;
+  overflow: hidden; /* Clip the image at corners */
+}
+
+.paper-content-inner {
+  position: relative;
+  z-index: 10;
+  transition: max-width 0.3s ease;
+}
+
+.paper-logo-container {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  height: 100%;
+  /* Make it roughly square aspect ratio driven by height */
+  aspect-ratio: 1 / 1;
+  
+  /* Initial state: 0.75 opacity with fade mask */
+  opacity: 0.5;
+  
+  /* Fade from transparent (left) to opaque (right) */
+  mask-image: linear-gradient(to right, transparent, black);
+  -webkit-mask-image: linear-gradient(to right, transparent, black);
+  
+  transition: opacity 0.3s ease;
+  pointer-events: none; /* Allow clicks to pass through to the card/links */
+}
+
+.paper-logo-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Hover: Increase opacity to 1 (mask still applies for the gradient effect, 
+   but max alpha becomes 100% instead of 75%) */
+.spotlight-paper:hover .paper-logo-container {
+  opacity: 1;
+}
+
+/* Responsive Logic */
+@media (max-width: 768px) {
+  /* Hide specific logo elements on mobile */
+  .paper-logo-container {
+    display: none;
+  }
+  
+  /* Ensure content takes full width */
+  .paper-content-inner.with-image {
+    max-width: 100%;
+  }
+}
+
+@media (min-width: 769px) {
+  /* Constrain text width when image is present */
+  .paper-content-inner.with-image {
+    max-width: 80%;
+    padding-right: 1rem;
+  }
+}

@@ -21,6 +21,11 @@
         crossorigin="anonymous"
         >
     {{ end }}
+    {{ $favicon := resources.Get "images/favicon.png" }}
+    {{ if $favicon }}
+        {{ $faviconResized := $favicon.Resize "32x32" }}
+        <link rel="icon" href="{{ $faviconResized.RelPermalink }}" type="image/png">
+    {{ end }}
 </head>
 
 <body>

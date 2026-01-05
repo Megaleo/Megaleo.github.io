@@ -126,22 +126,32 @@ main {
   display: flex;
   align-items: center;
   font-family: var(--font-sans);
-  font-size: 0.85rem;
+  font-size: 0.75rem;
   font-weight: 600;
   color: var(--color-text-light);
-  background: var(--color-bg);
-  padding: 4px 8px;
+  background: transparent; /* Make it blend in more */
+  padding: 3px 8px;
   border-radius: var(--radius-sm);
-  border: 1px solid var(--border-subtle);
-  margin-left: 1rem;
+  border: 1px solid transparent; /* Remove visible border by default */
+  margin-left: 0.75rem;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.lang-switch-container:hover {
+  border-color: var(--border-subtle);
+  background: var(--color-bg);
+  box-shadow: var(--shadow-sm);
 }
 
 .lang-toggle {
   color: var(--color-text-muted);
-  padding: 0 4px;
+  padding: 0 1px;
+  transition: color 0.2s ease;
 }
 
-.lang-toggle:hover {
+/* Highlight inactive language on container hover */
+.lang-switch-container:hover .lang-toggle:not(.active) {
   color: var(--color-primary);
 }
 
@@ -151,7 +161,7 @@ main {
 
 .lang-separator {
   color: var(--border-subtle);
-  margin: 0 2px;
+  margin: 0;
 }
 
 /* Desktop Nav */

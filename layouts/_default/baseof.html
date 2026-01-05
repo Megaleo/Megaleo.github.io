@@ -35,36 +35,30 @@
                 <a href="{{ site.Home.RelPermalink }}" class="logo">llessa.me</a>
                 
                 <!-- Language Switcher (iOS style toggle) -->
-                <div class="lang-switch-container">
-                    {{ if .IsTranslated }}
-                        {{ range .Translations }}
-                            <a href="{{ .RelPermalink }}" class="lang-toggle" aria-label="Switch Language">{{ .Language.Lang }}</a>
-                        {{ end }}
-                    {{ else }}
-                        <!-- If no translation exists, maybe show disabled or current? 
-                             User asked for EN|PT toggle. I'll implement a static visual toggle that switches state. -->
-                         {{ $currentLang := .Language.Lang }}
-                         {{ if eq $currentLang "en" }}
-                            <span class="lang-toggle active">EN</span>
-                            <span class="lang-separator">|</span>
-                            {{ if .IsTranslated }}
-                                {{ range .Translations }}
-                                <a href="{{ .RelPermalink }}" class="lang-toggle">PT</a>
-                                {{ end }}
-                            {{ else }}
-                                <!-- Fallback if page not translated, try to guess URL or linking to home? 
-                                     User asked to switch to corresponding page. If it doesn't exist, Hugo .Translations is empty.
-                                     I will assume main pages exist. Constructing the logic to show both EN | PT always is cleaner UI.
-                                -->
-                                <a href="/pt-br{{ .RelPermalink }}" class="lang-toggle">PT</a> 
-                            {{ end }}
-                         {{ else }}
-                            <a href="{{ .RelPermalink | replaceRE "^/pt-br" "" }}" class="lang-toggle">EN</a> 
-                            <span class="lang-separator">|</span>
-                            <span class="lang-toggle active">PT</span>
-                         {{ end }}
+                {{ $target := "" }}
+                {{ if .IsTranslated }}
+                    {{ range first 1 .Translations }}
+                        {{ $target = .RelPermalink }}
                     {{ end }}
-                </div>
+                {{ else }}
+                    {{ if eq .Language.Lang "en" }}
+                        {{ $target = printf "/pt-br%s" .RelPermalink }}
+                    {{ else }}
+                        {{ $target = .RelPermalink | replaceRE "^/pt-br" "" }}
+                    {{ end }}
+                {{ end }}
+
+                <a href="{{ $target }}" class="lang-switch-container" aria-label="Switch Language">
+                    {{ if eq .Language.Lang "en" }}
+                        <span class="lang-toggle active">EN</span>
+                        <span class="lang-separator">|</span>
+                        <span class="lang-toggle">PT</span>
+                    {{ else }}
+                        <span class="lang-toggle">EN</span>
+                        <span class="lang-separator">|</span>
+                        <span class="lang-toggle active">PT</span>
+                    {{ end }}
+                </a>
             </div>
 
             <button id="menu-toggle" class="menu-toggle" aria-label="Toggle navigation">&#9776;</button>

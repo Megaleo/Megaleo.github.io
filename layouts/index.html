@@ -78,21 +78,30 @@
       </div>
       {{ end }}
 
+      <div id="equal-contribution-note" style="display: {{ if gt (len $pubs) 3 }}none{{ else }}block{{ end }}; margin-top: 1rem;">
+        <small><em>* {{ i18n "equal_contribution" }}</em></small>
+      </div>
+
       <script>
-        document.getElementById('load-more-btn')?.addEventListener('click', function() {
-          const hidden = document.querySelectorAll('.hidden-paper');
-          const batchSize = 3;
-          
-          for(let i=0; i<batchSize && i<hidden.length; i++) {
-            hidden[i].classList.remove('hidden-paper');
-            hidden[i].classList.add('fade-in'); // Add animation
-          }
-          
-          // Re-check count after revealing
-          if(document.querySelectorAll('.hidden-paper').length === 0) {
-            this.style.display = 'none';
-          }
-        });
+        const loadMoreBtn = document.getElementById('load-more-btn');
+        if (loadMoreBtn) {
+          loadMoreBtn.addEventListener('click', function() {
+            const hidden = document.querySelectorAll('.hidden-paper');
+            const batchSize = 3;
+            
+            for(let i=0; i<batchSize && i<hidden.length; i++) {
+              hidden[i].classList.remove('hidden-paper');
+              hidden[i].classList.add('fade-in'); // Add animation
+            }
+            
+            // Re-check count after revealing
+            if(document.querySelectorAll('.hidden-paper').length === 0) {
+              this.style.display = 'none';
+              const note = document.getElementById('equal-contribution-note');
+              if(note) note.style.display = 'block';
+            }
+          });
+        }
       </script>
     {{ end }}
   </section>

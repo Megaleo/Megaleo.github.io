@@ -33,6 +33,9 @@
               {{ $url = printf "https://scholar.google.com/citations?user=%s" $username }}
               {{ $icon = "fa-brands fa-google-scholar" }} <!-- Note: standard FA might not have google-scholar, generic google or graduation-cap often used if missing -->
               {{ $icon = "fas fa-graduation-cap" }} 
+            {{ else if eq $networkName "arXiv" }}
+              {{ $url = printf "https://arxiv.org/a/%s.html" $username }}
+              {{ $icon = "ai ai-arxiv" }}
             {{ else if eq $networkName "GitHub" }}
               {{ $url = printf "https://github.com/%s" $username }}
               {{ $icon = "fab fa-github" }}

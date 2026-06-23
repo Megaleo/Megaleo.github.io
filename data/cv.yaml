@@ -19,6 +19,7 @@ cv:
       summary: "Supervisors: Chong Wang & Timothy H. Hsieh"
       highlights:
       - 'Thesis title: "Order in the Open: Symmetries and Entanglement of Many-Body Mixed States"'
+      - 'Recipient of the *John Brodie Memorial Award*'
     - institution: Perimeter Institute (University of Waterloo)
       area: Physics
       degree: MSc
@@ -54,6 +55,13 @@ cv:
     # - bullet: Dynamical and open quantum systems
     - bullet: Multipartite entanglement theory
     publications:
+    - title: Local Strong-to-Weak Spontaneous Symmetry Breaking
+      authors:
+      - Francisco Divi
+      - '***LAL***'
+      - Chong Wang
+      doi: 10.48550/arXiv.2605.28967
+      date: 2026-06
     - title: Mixed-State Long-Range Entanglement from Dimensional Constraints
       authors:
       - '***LAL***'
@@ -318,6 +326,11 @@ cv:
       highlights:
       - "Youngest among participants. I got the highest grade: **A+**."
     awards_and_scholarships:
+    - name: John Brodie Memorial Award
+      date: 2026
+      summary: "Perimeter Institute. Amount: CAD 1 000"
+      highlights:
+      - 'Awarded to a graduate Perimeter Institute student for their impact on the field; external recognition; independence; and contribution to PI/scientific community.'
     - name: International Doctoral Student Award
       date: 2022
       summary: "University of Waterloo & Perimeter Institute. Amount: CAD 186 800"

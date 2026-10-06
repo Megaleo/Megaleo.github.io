@@ -1,7 +1,7 @@
 ---
 title: "Home"
 ---
-PhD student in theoretical physics at the [Perimeter Institute](https://perimeterinstitute.ca/) and [University of Waterloo](https://uwaterloo.ca/). I will be joining the [KITP](https://www.kitp.ucsb.edu/) at [UC Santa Barbara](https://www.ucsb.edu/) as a postdoctoral researcher in September 2026.
+Postdoctoral Scholar at the [Kavli Institute for Theoretical Physics (KITP)](https://www.kitp.ucsb.edu/), [UC Santa Barbara](https://www.ucsb.edu/).
 
 I employ quantum information theory to study many-body quantum systems, focusing on relations between **entanglement**, **symmetries** and **mixed states**. For more details, see [Research](/research).
 

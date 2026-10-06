@@ -54,7 +54,20 @@ cv:
     - bullet: Mixed-state topological phases of matter
     # - bullet: Dynamical and open quantum systems
     - bullet: Multipartite entanglement theory
+    experience:
+    - position: Postdoctoral Scholar
+      company: Kavli Institute for Theoretical Physics
+      location: Santa Barbara, USA
+      start_date: 2026-09
     publications:
+    - title: Symmetry enforcing entanglement at high temperatures
+      authors:
+      - Amir-Reza Negari\*
+      - '***LAL***\*'
+      - Subhayan Sahu
+      doi: 10.1103/rckt-3lfm
+      date: 2026-08
+      journal: PRA
     - title: Local Strong-to-Weak Spontaneous Symmetry Breaking
       authors:
       - Francisco Divi
@@ -75,14 +88,6 @@ cv:
       - Rodolfo R. Soldati
       doi: 10.48550/arXiv.2510.08672
       date: 2025-10
-    - title: Symmetry enforces entanglement at high temperatures
-      authors:
-      - Amir-Reza Negari\*
-      - '***LAL***\*'
-      - Subhayan Sahu
-      doi: 10.48550/arxiv.2508.20166
-      date: 2025-08
-      journal: "Submitted to PRL"
     - title: Mixed-state phases from local reversibility
       authors:
       - Shengqi Sang\*
